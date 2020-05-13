@@ -1,0 +1,72 @@
+﻿<Window x:Class="WpfApplication1.Window1"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="Window1" Height="586" Width="410">
+    <Grid>
+        <Grid VerticalAlignment="Center" HorizontalAlignment="Center">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="auto" />
+            </Grid.ColumnDefinitions>
+            
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*" />
+                <RowDefinition Height="auto" />
+            </Grid.RowDefinitions>
+        
+        
+            <Image x:Name="img" Width="240" Height="240">
+                <Image.Source>
+                    <DrawingImage>
+                        <DrawingImage.Drawing>
+                            <DrawingGroup>
+                                <DrawingGroup>
+                                    <DrawingGroup>
+                                        <DrawingGroup.Transform>
+                                            <TransformGroup>
+                                                <RotateTransform x:Name="roll" Angle="0" CenterX="120" CenterY="120" />
+                                                <TranslateTransform x:Name="pitch" Y="0" />
+                                            </TransformGroup>
+                                        </DrawingGroup.Transform>
+
+                                        <ImageDrawing ImageSource="Images\pNxVK.gif" Rect="0,0,240,240" />
+                                    </DrawingGroup>
+
+                                    <DrawingGroup.ClipGeometry>
+                                        <EllipseGeometry Center="120,120" RadiusX="60" RadiusY="60">
+                                        </EllipseGeometry>
+                                    </DrawingGroup.ClipGeometry>
+                                </DrawingGroup>
+
+                                <DrawingGroup>
+                                    <ImageDrawing ImageSource="Images\zUr8D.png" Rect="0,0,240,240" />
+                                    <ImageDrawing ImageSource="Images\XPZW9.png" Rect="0,0,240,240" />
+                                </DrawingGroup>
+                            </DrawingGroup>
+                        </DrawingImage.Drawing>
+                    </DrawingImage>
+                </Image.Source>
+            </Image>
+        
+            <Slider x:Name="slider_roll" Grid.Column="0" Grid.Row="1" Maximum="80" Minimum="-80" Value="0" ValueChanged="slider_roll_ValueChanged" />
+            <Slider x:Name="slider_pitch" Grid.Column="1" Grid.Row="0" Maximum="80" Minimum="-80" Value="0" Orientation="Vertical" ValueChanged="slider_pitch_ValueChanged" />
+        </Grid>
+
+        <Rectangle Visibility="Collapsed" HorizontalAlignment="Center" Height="400" Margin="0" Stroke="Black" StrokeThickness="0" VerticalAlignment="Center" Width="160" RenderTransformOrigin="0.5,0.5">
+    		<Rectangle.Fill>
+    			<LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+    				<GradientStop Color="#FF00F3FF" Offset="0"/>
+    				<GradientStop Color="#FFFF8B00" Offset="1"/>
+    				<GradientStop Color="#FF91B76D" Offset="0.474"/>
+    				<GradientStop Color="#FFB5A849" Offset="0.522"/>
+    			</LinearGradientBrush>
+    		</Rectangle.Fill>
+			<Rectangle.Clip>
+				<EllipseGeometry Center="80 200" RadiusX="80" RadiusY="80" />
+			</Rectangle.Clip>
+    	</Rectangle>
+        
+    	<Ellipse HorizontalAlignment="Center" Visibility="Collapsed" Height="157" Margin="0" Stroke="Black" VerticalAlignment="Center" Width="157" StrokeThickness="5"/>
+        
+    </Grid>
+</Window>

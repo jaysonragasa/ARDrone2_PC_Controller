@@ -1,0 +1,201 @@
+﻿<Window x:Class="WpfApplication1.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:av="clr-namespace:AviationInstruments;assembly=AviationInstruments"
+        Title="Parrot AR.Drone 2.0" SizeToContent="WidthAndHeight">
+    <Grid Width="854" Height="480">
+        <Grid Margin="10">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="auto" />
+            </Grid.ColumnDefinitions>
+
+            <Grid Background="Black" x:Name="Hud">
+                <Image x:Name="imgVideo" Stretch="UniformToFill" />
+
+                <TextBlock x:Name="txBattery" Text="Battery: 0%" HorizontalAlignment="Right" VerticalAlignment="Top" Foreground="White" />
+
+                <StackPanel HorizontalAlignment="Left">
+                    <Button x:Name="btnActivate" HorizontalAlignment="Left" VerticalAlignment="Top" Content=" Activate "/>
+                    <TextBlock x:Name="lblIsConnected" Text="Connected: False" />
+                    <Button x:Name="btnDeActivate" HorizontalAlignment="Left" VerticalAlignment="Top" Content=" DeActivate "/>
+
+                    <WindowsFormsHost Height="173" Width="173" HorizontalAlignment="Left">
+                        <av:AttitudeIndicatorInstrumentControl x:Name="attitudeControl" Width="173" Height="173" />
+                    </WindowsFormsHost>
+
+                    <Slider x:Name="pitch" Width="200" Minimum="-45" Maximum="45" ValueChanged="Slider_ValueChanged" />
+                    <Slider x:Name="roll" Width="200" Minimum="-180" Maximum="180" ValueChanged="Slider_ValueChanged_1" />
+                </StackPanel>
+
+                <Grid x:Name="frame" Width="300" Height="300" HorizontalAlignment="Center" VerticalAlignment="Center">
+                    <Grid Height="720" Width="250" HorizontalAlignment="Center" VerticalAlignment="Center">
+                        <StackPanel x:Name="AttitudeMeter" HorizontalAlignment="Center" VerticalAlignment="Center" Opacity="0.15" RenderTransformOrigin="0.5,0.5">
+                            <StackPanel.RenderTransform>
+                                <TransformGroup>
+                                    <ScaleTransform/>
+                                    <SkewTransform/>
+                                    <RotateTransform Angle="0"/>
+                                    <TranslateTransform/>
+                                </TransformGroup>
+                            </StackPanel.RenderTransform>
+                            <!--<StackPanel.RenderTransform>
+                                <ScaleTransform ScaleX="1" ScaleY="1" />
+                            </StackPanel.RenderTransform>-->
+
+                            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                                <TextBlock Text="80" Foreground="White" />
+                                <Border BorderBrush="White" BorderThickness="2" Height="4" Width="250" Margin="10,0" />
+                                <TextBlock Text="80" Foreground="White" />
+                            </StackPanel>
+                            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="0,5">
+                                <Border BorderBrush="White" BorderThickness="1" Height="2" Width="150" Margin="10,0" />
+                            </StackPanel>
+                            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                                <TextBlock Text="70" Foreground="White" />
+                                <Border BorderBrush="White" BorderThickness="2" Height="4" Width="200" Margin="10,0" />
+                                <TextBlock Text="70" Foreground="White" />
+                            </StackPanel>
+                            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="0,5">
+                                <Border BorderBrush="White" BorderThickness="1" Height="2" Width="100" Margin="10,0" />
+                            </StackPanel>
+                            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                                <TextBlock Text="60" Foreground="White" />
+                                <Border BorderBrush="White" BorderThickness="2" Height="4" Width="150" Margin="10,0" />
+                                <TextBlock Text="60" Foreground="White" />
+                            </StackPanel>
+                            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="0,5">
+                                <Border BorderBrush="White" BorderThickness="1" Height="2" Width="65" Margin="10,0" />
+                            </StackPanel>
+                            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                                <TextBlock Text="50" Foreground="White" />
+                                <Border BorderBrush="White" BorderThickness="2" Height="4" Width="100" Margin="10,0" />
+                                <TextBlock Text="50" Foreground="White" />
+                            </StackPanel>
+                            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="0,5">
+                                <Border BorderBrush="White" BorderThickness="1" Height="2" Width="25" Margin="10,0" />
+                            </StackPanel>
+                            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                                <TextBlock Text="40" Foreground="White" />
+                                <Border BorderBrush="White" BorderThickness="2" Height="4" Width="70" Margin="10,0" />
+                                <TextBlock Text="40" Foreground="White" />
+                            </StackPanel>
+                            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="0,5">
+                                <Border BorderBrush="White" BorderThickness="1" Height="2" Width="20" Margin="10,0" />
+                            </StackPanel>
+                            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                                <TextBlock Text="30" Foreground="White" />
+                                <Border BorderBrush="White" BorderThickness="2" Height="4" Width="50" Margin="10,0" />
+                                <TextBlock Text="30" Foreground="White" />
+                            </StackPanel>
+                            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="0,5">
+                                <Border BorderBrush="White" BorderThickness="1" Height="2" Width="15" Margin="10,0" />
+                            </StackPanel>
+                            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                                <TextBlock Text="20" Foreground="White" />
+                                <Border BorderBrush="White" BorderThickness="2" Height="4" Width="40" Margin="10,0" />
+                                <TextBlock Text="20" Foreground="White" />
+                            </StackPanel>
+                            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="0,5">
+                                <Border BorderBrush="White" BorderThickness="1" Height="2" Width="10" Margin="10,0" />
+                            </StackPanel>
+                            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                                <TextBlock Text="10" Foreground="White" />
+                                <Border BorderBrush="White" BorderThickness="2" Height="4" Width="30" Margin="10,0" />
+                                <TextBlock Text="10" Foreground="White" />
+                            </StackPanel>
+                            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="0,5">
+                                <Border BorderBrush="White" BorderThickness="1" Height="2" Width="5" Margin="10,0" />
+                            </StackPanel>
+
+                            <Grid>
+                                <Border BorderBrush="White" BorderThickness="1" Height="2" Width="20" Margin="10,5" />
+                                <Border BorderBrush="White" BorderThickness="1" Height="10" Width="2" Margin="10,0" />
+                            </Grid>
+
+                            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="0,5">
+                                <Border BorderBrush="White" BorderThickness="1" Height="2" Width="5" Margin="10,0" />
+                            </StackPanel>
+                            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                                <TextBlock Text="-10" Foreground="White" />
+                                <Border BorderBrush="White" BorderThickness="2" Height="4" Width="30" Margin="10,0" />
+                                <TextBlock Text="-10" Foreground="White" />
+                            </StackPanel>
+                            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="0,5">
+                                <Border BorderBrush="White" BorderThickness="1" Height="2" Width="10" Margin="10,0" />
+                            </StackPanel>
+                            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                                <TextBlock Text="-20" Foreground="White" />
+                                <Border BorderBrush="White" BorderThickness="2" Height="4" Width="40" Margin="10,0" />
+                                <TextBlock Text="-20" Foreground="White" />
+                            </StackPanel>
+                            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="0,5">
+                                <Border BorderBrush="White" BorderThickness="1" Height="2" Width="15" Margin="10,0" />
+                            </StackPanel>
+                            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                                <TextBlock Text="-30" Foreground="White" />
+                                <Border BorderBrush="White" BorderThickness="2" Height="4" Width="50" Margin="10,0" />
+                                <TextBlock Text="-30" Foreground="White" />
+                            </StackPanel>
+                            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="0,5">
+                                <Border BorderBrush="White" BorderThickness="1" Height="2" Width="20" Margin="10,0" />
+                            </StackPanel>
+                            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                                <TextBlock Text="-40" Foreground="White" />
+                                <Border BorderBrush="White" BorderThickness="2" Height="4" Width="70" Margin="10,0" />
+                                <TextBlock Text="-40" Foreground="White" />
+                            </StackPanel>
+                            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="0,5">
+                                <Border BorderBrush="White" BorderThickness="1" Height="2" Width="25" Margin="10,0" />
+                            </StackPanel>
+                            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                                <TextBlock Text="-50" Foreground="White" />
+                                <Border BorderBrush="White" BorderThickness="2" Height="4" Width="100" Margin="10,0" />
+                                <TextBlock Text="-50" Foreground="White" />
+                            </StackPanel>
+                            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="0,5">
+                                <Border BorderBrush="White" BorderThickness="1" Height="2" Width="65" Margin="10,0" />
+                            </StackPanel>
+                            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                                <TextBlock Text="-60" Foreground="White" />
+                                <Border BorderBrush="White" BorderThickness="2" Height="4" Width="150" Margin="10,0" />
+                                <TextBlock Text="-60" Foreground="White" />
+                            </StackPanel>
+                            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="0,5">
+                                <Border BorderBrush="White" BorderThickness="1" Height="2" Width="100" Margin="10,0" />
+                            </StackPanel>
+                            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                                <TextBlock Text="-70" Foreground="White" />
+                                <Border BorderBrush="White" BorderThickness="2" Height="4" Width="200" Margin="10,0" />
+                                <TextBlock Text="-70" Foreground="White" />
+                            </StackPanel>
+                            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="0,5">
+                                <Border BorderBrush="White" BorderThickness="1" Height="2" Width="150" Margin="10,0" />
+                            </StackPanel>
+                            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                                <TextBlock Text="-80" Foreground="White" />
+                                <Border BorderBrush="White" BorderThickness="2" Height="4" Width="250" Margin="10,0" />
+                                <TextBlock Text="-80" Foreground="White" />
+                            </StackPanel>
+                        </StackPanel>
+                    </Grid>
+                </Grid>
+
+                <Border BorderBrush="White" BorderThickness="1" Height="2" Width="600" Margin="10,0" />
+                <Border BorderBrush="White" BorderThickness="1" Height="200" Width="2" Margin="10,0" />
+            </Grid>
+
+            <StackPanel Grid.Column="1" Width="173" Visibility="Collapsed">
+                <!--<WindowsFormsHost Height="173" Margin="5,10,0,0">
+                    <av:AttitudeIndicatorInstrumentControl x:Name="attitudeControl" Width="173" Height="173" />
+                </WindowsFormsHost>-->
+                <WindowsFormsHost Height="173" Margin="5,10,0,0">
+                    <av:HeadingIndicatorInstrumentControl x:Name="headingControl" Width="150" Height="173" />
+                </WindowsFormsHost>
+                <WindowsFormsHost Height="173" Margin="5,10,0,0">
+                    <av:AltimeterInstrumentControl x:Name="altimeterControl" Width="150" Height="173" />
+                </WindowsFormsHost>
+            </StackPanel>
+        </Grid>
+    </Grid>
+</Window>
